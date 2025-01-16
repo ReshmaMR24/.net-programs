@@ -1,0 +1,20 @@
+using System;
+
+class Program
+{
+    static int Power(int baseNum, int exponent)
+    {
+        if (exponent == 0) return 1;
+        return baseNum * Power(baseNum, exponent - 1);
+    }
+
+    static void Main()
+    {
+        Console.Write("Enter the base: ");
+        int baseNum = int.Parse(Console.ReadLine());
+        Console.Write("Enter the exponent: ");
+        int exponent = int.Parse(Console.ReadLine());
+
+        Console.WriteLine($"Result: {Power(baseNum, exponent)}");
+    }
+}
