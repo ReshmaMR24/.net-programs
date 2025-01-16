@@ -1,0 +1,45 @@
+using System;
+using System.Security.Cryptography;
+using System.Text;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter text to encrypt: ");
+        string plainText = Console.ReadLine();
+
+        string encrypted = Encrypt(plainText, "YourKey1234567890");
+        Console.WriteLine($"Encrypted: {encrypted}");
+
+        string decrypted = Decrypt(encrypted, "YourKey1234567890");
+        Console.WriteLine($"Decrypted: {decrypted}");
+    }
+
+    static string Encrypt(string plainText, string key)
+    {
+        using (Aes aes = Aes.Create())
+        {
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = new byte[16];
+            ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+            byte[] encryptedBytes = encryptor.TransformFinalBlock(Encoding.UTF8.GetBytes(plainText), 0, plainText.Length);
+            return Convert.ToBase64String(encryptedBytes);
+        }
+    }
+
+    static string Decrypt(string encryptedText, string key)
+    {
+        using (Aes aes = Aes.Create())
+        {
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = new byte[16];
+            ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+            byte[] cipherBytes = Convert.FromBase64String(encryptedText);
+            byte[] decryptedBytes = decryptor.TransformFinalBlock(cipherBytes, 0, cipherBytes.Length);
+            return Encoding.UTF8.GetString(decryptedBytes);
+        }
+    }
+}
