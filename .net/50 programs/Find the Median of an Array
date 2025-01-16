@@ -1,0 +1,20 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter array elements separated by space: ");
+        int[] array = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+        Array.Sort(array);
+        double median;
+
+        if (array.Length % 2 == 0)
+            median = (array[array.Length / 2 - 1] + array[array.Length / 2]) / 2.0;
+        else
+            median = array[array.Length / 2];
+
+        Console.WriteLine($"Median: {median}");
+    }
+}
