@@ -1,0 +1,14 @@
+using System;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter an email address: ");
+        string email = Console.ReadLine();
+
+        string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        Console.WriteLine(Regex.IsMatch(email, pattern) ? "Valid email address." : "Invalid email address.");
+    }
+}
