@@ -1,0 +1,39 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter the number of elements: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        int[] arr = new int[n];
+        Console.WriteLine("Enter the elements:");
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        Console.Write("Enter the value to search: ");
+        int searchValue = Convert.ToInt32(Console.ReadLine());
+
+        int index = -1;
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] == searchValue)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        if (index != -1)
+        {
+            Console.WriteLine($"Value {searchValue} found at index {index}.");
+        }
+        else
+        {
+            Console.WriteLine($"Value {searchValue} not found.");
+        }
+    }
+}
