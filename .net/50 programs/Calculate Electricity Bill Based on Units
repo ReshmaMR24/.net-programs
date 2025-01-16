@@ -1,0 +1,17 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter electricity units consumed: ");
+        int units = int.Parse(Console.ReadLine());
+        double bill = 0;
+
+        if (units <= 100) bill = units * 1.5;
+        else if (units <= 300) bill = (100 * 1.5) + ((units - 100) * 2.5);
+        else bill = (100 * 1.5) + (200 * 2.5) + ((units - 300) * 4.0);
+
+        Console.WriteLine($"Total bill: ${bill:F2}");
+    }
+}
