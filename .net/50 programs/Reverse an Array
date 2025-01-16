@@ -1,0 +1,13 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter array elements separated by space: ");
+        int[] array = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+        Array.Reverse(array);
+        Console.WriteLine("Reversed array: " + string.Join(" ", array));
+    }
+}
