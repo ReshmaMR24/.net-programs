@@ -1,0 +1,76 @@
+using System;
+
+class Program
+{
+    static char[] board = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    static char currentPlayer = 'X';
+
+    static void Main()
+    {
+        int moves = 0;
+        while (true)
+        {
+            Console.Clear();
+            PrintBoard();
+            Console.Write($"Player {currentPlayer}, enter your move (1-9): ");
+            int move = int.Parse(Console.ReadLine()) - 1;
+
+            if (board[move] == 'X' || board[move] == 'O')
+            {
+                Console.WriteLine("Invalid move! Try again.");
+                continue;
+            }
+
+            board[move] = currentPlayer;
+            moves++;
+
+            if (CheckWin())
+            {
+                Console.Clear();
+                PrintBoard();
+                Console.WriteLine($"Player {currentPlayer} wins!");
+                break;
+            }
+
+            if (moves == 9)
+            {
+                Console.Clear();
+                PrintBoard();
+                Console.WriteLine("It's a draw!");
+                break;
+            }
+
+            currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
+        }
+    }
+
+    static void PrintBoard()
+    {
+        Console.WriteLine($" {board[0]} | {board[1]} | {board[2]} ");
+        Console.WriteLine("---|---|---");
+        Console.WriteLine($" {board[3]} | {board[4]} | {board[5]} ");
+        Console.WriteLine("---|---|---");
+        Console.WriteLine($" {board[6]} | {board[7]} | {board[8]} ");
+    }
+
+    static bool CheckWin()
+    {
+        int[,] winPatterns = {
+            { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 },
+            { 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 },
+            { 0, 4, 8 }, { 2, 4, 6 }
+        };
+
+        for (int i = 0; i < winPatterns.GetLength(0); i++)
+        {
+            if (board[winPatterns[i, 0]] == currentPlayer &&
+                board[winPatterns[i, 1]] == currentPlayer &&
+                board[winPatterns[i, 2]] == currentPlayer)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
