@@ -1,0 +1,42 @@
+// Install NuGet package: System.Data.SqlClient
+using System;
+using System.Data.SqlClient;
+
+class Program
+{
+    static void Main()
+    {
+        string connectionString = "YourConnectionStringHere";
+
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+
+            // Create
+            string insertQuery = "INSERT INTO Users (Name, Age) VALUES ('John Doe', 30)";
+            SqlCommand insertCommand = new SqlCommand(insertQuery, conn);
+            insertCommand.ExecuteNonQuery();
+
+            // Read
+            string selectQuery = "SELECT * FROM Users";
+            SqlCommand selectCommand = new SqlCommand(selectQuery, conn);
+            using (SqlDataReader reader = selectCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Console.WriteLine($"ID: {reader["ID"]}, Name: {reader["Name"]}, Age: {reader["Age"]}");
+                }
+            }
+
+            // Update
+            string updateQuery = "UPDATE Users SET Age = 31 WHERE Name = 'John Doe'";
+            SqlCommand updateCommand = new SqlCommand(updateQuery, conn);
+            updateCommand.ExecuteNonQuery();
+
+            // Delete
+            string deleteQuery = "DELETE FROM Users WHERE Name = 'John Doe'";
+            SqlCommand deleteCommand = new SqlCommand(deleteQuery, conn);
+            deleteCommand.ExecuteNonQuery();
+        }
+    }
+}
