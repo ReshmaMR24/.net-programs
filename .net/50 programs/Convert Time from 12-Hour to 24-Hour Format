@@ -1,0 +1,11 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter time in 12-hour format (hh:mm AM/PM): ");
+        DateTime time = DateTime.Parse(Console.ReadLine());
+        Console.WriteLine($"Time in 24-hour format: {time:HH:mm}");
+    }
+}
