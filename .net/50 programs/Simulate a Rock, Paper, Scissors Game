@@ -1,0 +1,31 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string[] options = { "Rock", "Paper", "Scissors" };
+        Random random = new Random();
+        string computerChoice = options[random.Next(3)];
+
+        Console.WriteLine("Choose Rock, Paper, or Scissors: ");
+        string userChoice = Console.ReadLine();
+
+        Console.WriteLine($"Computer chose: {computerChoice}");
+
+        if (userChoice.Equals(computerChoice, StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine("It's a tie!");
+        }
+        else if ((userChoice == "Rock" && computerChoice == "Scissors") ||
+                 (userChoice == "Paper" && computerChoice == "Rock") ||
+                 (userChoice == "Scissors" && computerChoice == "Paper"))
+        {
+            Console.WriteLine("You win!");
+        }
+        else
+        {
+            Console.WriteLine("You lose!");
+        }
+    }
+}
