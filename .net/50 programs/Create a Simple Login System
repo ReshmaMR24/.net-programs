@@ -1,0 +1,25 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string username = "admin";
+        string password = "password";
+
+        Console.Write("Enter username: ");
+        string inputUsername = Console.ReadLine();
+
+        Console.Write("Enter password: ");
+        string inputPassword = Console.ReadLine();
+
+        if (inputUsername == username && inputPassword == password)
+        {
+            Console.WriteLine("Login successful!");
+        }
+        else
+        {
+            Console.WriteLine("Invalid credentials.");
+        }
+    }
+}
