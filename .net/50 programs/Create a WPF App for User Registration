@@ -1,0 +1,21 @@
+using System.Windows;
+
+namespace UserRegistrationWPF
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            string name = NameTextBox.Text;
+            string email = EmailTextBox.Text;
+            string password = PasswordBox.Password;
+
+            MessageBox.Show($"User Registered:\nName: {name}\nEmail: {email}");
+        }
+    }
+}
