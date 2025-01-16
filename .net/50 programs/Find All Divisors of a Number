@@ -1,0 +1,15 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter a number: ");
+        int number = int.Parse(Console.ReadLine());
+
+        Console.Write("Divisors: ");
+        for (int i = 1; i <= number; i++)
+            if (number % i == 0) Console.Write($"{i} ");
+        Console.WriteLine();
+    }
+}
